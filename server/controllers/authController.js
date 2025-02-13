@@ -107,7 +107,7 @@ export const sendVerifyOtp=async(req,res)=>{
         const mailOptions={
             from:process.env.SENDER_EMAIL,
             to: user.email,
-            subject: 'Account Verfication OTP',
+            subject: 'Account Verification OTP',
             text: `Your OTP is ${otp}.Verify your account using this OTP.`
         }
         await transporter.sendMail(mailOptions);
@@ -117,7 +117,41 @@ export const sendVerifyOtp=async(req,res)=>{
         })
     }catch(error){
         res.json({success:false,
-            message:error.message});
+            message:error.message+"sendverifyotp"});
     }
 }
 
+export const verifyEmail = async(req,res)=>{
+    const {userId,otp}=req.body;
+    if(!userId || !otp){
+        return res.json({success:false,message:'Missing Details'});
+    }
+    try {
+        const user = await userModel.findById(userId);
+        if(!user){
+            return res.json({success:false, message:'User not found'});
+        }
+        if(user.verifyOtp==='' || user.verifyOtp!==otp){
+            return res.json({success:false,message:'Invalid OTP'});
+        }
+        if(user.verifyOtpExpireAt<Date.now()){
+            return res.json({success:false,message:'OTP expired'});
+        }
+        user.isAccountVerified=true;
+        user.verifyOtp='';
+        user.verifyOtpExpireAt=0;
+
+        await user.save();
+        res.json({success:true,message:'Account verified successfully'});
+    } catch (error) {
+        return res.json({success:false,message:error.message+"verifyEmail"});
+    }
+}
+//check if the user is authenticated
+export const isAuthenticated =async(req,res)=>{
+    try {
+        return res.json({success:true});
+    } catch (error) {
+        res.json({success:false,message:error.message +"isauthenticated"})
+    }
+}
