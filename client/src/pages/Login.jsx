@@ -68,7 +68,7 @@ const Login = () => {
             <input onChange={e=>setPassword(e.target.value)} value={password} className='bg-transparent outline-none' type="password" placeholder='Password' required/>
           </div>
           <p onClick={()=>navigate('/reset-password')} className='mb-4 cursor-pointer text-indigo-500'>Forgot Password?</p>
-          <button className='w-full py-2.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 font-medium text-white'>{state}</button>
+          <button className='w-full py-2.5 rounded-full bg-indigo-600 font-medium text-white transition-all duration-500 ease-in-out hover:bg-purple-600 '>{state}</button>
         </form>
         {state === 'Sign Up'? (<p className='text-gray-400 text-center text-xs mt-4'>Already have an account?{'  '}
           <span onClick={()=>setState('Login')} className='text-blue-400 cursor-pointer underline'>Login Here</span>

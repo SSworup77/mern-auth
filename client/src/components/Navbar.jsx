@@ -44,13 +44,14 @@ const Navbar = () => {
           <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
             {!userData.isAccountVerified && <li onClick={sendVerificationOtp} className='py-1 px-2 hover:bg-gray-200 cursor-pointer'>Verify Email</li>}
             
-            <li onClick={logout} className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10'>Logout</li>
+            <li onClick={logout} className='py-1 px-2 hover:bg-gray-200  cursor-pointer pr-10'>Logout</li>
           </ul>
         </div>
       </div>:
-      <button onClick={()=>navigate('/login')} className='flex items-center gap-2 border border-gray-500 rounded-full px-6 py-2 text-gray-800 
-      hover: bg-gray-100 transition-all'>
-        Login <img src={assets.arrow_icon} alt="" /></button>
+      <button onClick={()=>navigate('/login')} className='group flex items-center gap-2 border border-gray-500 rounded-full px-6 py-2 text-gray-800 
+      transition-all duration-300 ease-in-outs
+      hover: bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:text-white hover:border-transparent transition-all'>
+        Login <img src={assets.arrow_icon} alt="" className='transform transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:brightness-200 group-hover:contrast-300'/></button>
     }
       </div>
   )

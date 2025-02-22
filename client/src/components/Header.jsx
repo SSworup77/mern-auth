@@ -12,7 +12,7 @@ const Header = () => {
         </h1>
         <h2 className='text-3xl sm:text-5xl font-semibold mb-4'>Welcome to our app!</h2>
         <p className='mb-8 max-w-md'>Let's start with a quick product tour and we will have you up and running in no time!</p>
-        <button className='border border-gray-500 rounded-full px-8 py-2.5 hover:bg-gray-100 transition-all'>Get Started</button>
+        <button className='border border-gray-500 rounded-full px-8 py-2.5 duration-200 ease-in hover:bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:text-white hover:border-transparent transition-all'>Get Started</button>
     </div>
   )
 }
