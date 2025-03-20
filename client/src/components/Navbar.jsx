@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   const navigate=useNavigate()
@@ -36,7 +38,7 @@ const Navbar = () => {
   }
   return (
     <div className='w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0'>
-      <img src={assets.logo} alt="" className="w-28 sm:w-32"/>
+      <img src={assets.logo} alt="logo" className="w-28 sm:w-32"/>
       {userData?
       <div className='w-8 h-8 flex justify-center items-center bg-black text-white rounded-full cursor-pointer relative group'>
         {userData.name[0].toUpperCase()}
@@ -51,7 +53,8 @@ const Navbar = () => {
       <button onClick={()=>navigate('/login')} className='group flex items-center gap-2 border border-gray-500 rounded-full px-6 py-2 text-gray-800 
       transition-all duration-300 ease-in-outs
       hover: bg-gradient-to-r hover:from-purple-400 hover:to-indigo-400 hover:text-white hover:border-transparent transition-all'>
-        Login <img src={assets.arrow_icon} alt="" className='transform transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:brightness-200 group-hover:contrast-300'/></button>
+        Login  <FontAwesomeIcon icon={faArrowRight} className='transform transition-transform duration-300 ease-in-out group-hover:translate-x-1'/>
+        </button>
     }
       </div>
   )

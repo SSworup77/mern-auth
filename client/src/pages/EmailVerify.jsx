@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom'
@@ -10,7 +10,7 @@ const EmailVerify = () => {
   axios.defaults.withCredentials=true
   const navigate=useNavigate()
   const {backendUrl,isLoggedin,userData,getUserData}=useContext(AppContext)
-  const inputRefs=React.useRef([])
+  const inputRefs=useRef([])
   const handleInput=(e,i)=>{
     if(e.target.value.length>0 && i<inputRefs.current.length-1){
       inputRefs.current[i+1].focus();
@@ -35,7 +35,7 @@ const EmailVerify = () => {
       e.preventDefault();
       const otp=inputRefs.current.map(e=>e.value).join('')
       const {data}=await axios.post(backendUrl+'/api/auth/verify-account',{otp})
-      if(data.success){
+      if(data.success){ k
         toast.success(data.message)
         getUserData()
         navigate('/')
